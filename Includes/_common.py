@@ -21,18 +21,10 @@ def __install_libraries():
         else:
             print(f"WARNING: The wrong version of dbacademy is attached to this cluster. Expected {version}, found {installed_version}.")
             print(f"Please stop now and install the dbacademy package on this cluster")
-            raise Exception("Re-installation required")
-
-    except Exception as e:
-        # The import fails if library is not attached to cluster
-        
-        default_command = f"install --quiet --disable-pip-version-check ../dbacademy-3.0.69/py3-none-any.whl"
-        pip_command = spark.conf.get("dbacademy.library.install", default_command)
-
-        if pip_command != default_command:
-            print(f"WARNING: Using alternative library installation:\n| default: %pip {default_command}\n| current: %pip {pip_command}")
-        else:
-            print("Installing default libraries")
+            raise Exception("Re-installation required, please go to the Clusters page to install the package")
+    except:
+        print(f"Please stop now and install the dbacademy package on this cluster")
+        raise Exception("Innstallation required, please go to the Clusters page to install the package")
 
 __install_libraries()
 

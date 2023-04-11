@@ -1,16 +1,4 @@
 # Databricks notebook source
-def __validate_libraries():
-    import requests
-    try:
-        site = "https://github.com/databricks-academy/dbacademy"
-        response = requests.get(site)
-        error = f"Unable to access GitHub or PyPi resources (HTTP {response.status_code} for {site})."
-        assert response.status_code == 200, "{error} Please see the \"Troubleshooting | {section}\" section of the \"Version Info\" notebook for more information.".format(error=error, section="Cannot Install Libraries")
-    except Exception as e:
-        if type(e) is AssertionError: raise e
-        error = f"Unable to access GitHub or PyPi resources ({site})."
-        raise AssertionError("{error} Please see the \"Troubleshooting | {section}\" section of the \"Version Info\" notebook for more information.".format(error=error, section="Cannot Install Libraries")) from e
-
 def __install_libraries():
     global pip_command
     
